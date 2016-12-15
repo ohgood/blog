@@ -90,12 +90,12 @@
 <meta property="og:title" content="flume-ng">
 <meta property="og:url" content="www.tonywu.me/blog/2016/10/26/flume-ng/index.html">
 <meta property="og:site_name" content="Tony's blog">
-<meta property="og:image" content="www.tonywu.me/blog/blog/img/摘要图片/flume-ng.png">
-<meta property="og:image" content="www.tonywu.me/blog/blog/img/flume-ng-1.png">
-<meta property="og:updated_time" content="2016-12-15T05:41:24.147Z">
+<meta property="og:image" content="www.tonywu.me/blog/img/摘要图片/flume-ng.png">
+<meta property="og:image" content="www.tonywu.me/blog/img/flume-ng-1.png">
+<meta property="og:updated_time" content="2016-12-15T05:43:24.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="flume-ng">
-<meta name="twitter:image" content="www.tonywu.me/blog/blog/img/摘要图片/flume-ng.png">
+<meta name="twitter:image" content="www.tonywu.me/blog/img/摘要图片/flume-ng.png">
 
 
 
@@ -344,7 +344,7 @@
       
 
       
-        <p><img src="/blog/img/摘要图片/flume-ng.png" alt="img"><br><a id="more"></a></p>
+        <p><img src="/img/摘要图片/flume-ng.png" alt="img"><br><a id="more"></a></p>
 <h3 id="什么是flume-ng"><a href="#什么是flume-ng" class="headerlink" title="什么是flume-ng"></a>什么是flume-ng</h3><p>Flume NG是Cloudera提供的一个分布式、可靠、可用的系统，它能够将不同数据源的海量日志数据进行高效收集、聚合、移动，最后存储到一个中心化数据存储系统中。由原来的Flume OG到现在的Flume NG，进行了架构重构，并且现在NG版本完全不兼容原来的OG版本。经过架构重构后，Flume NG更像是一个轻量的小工具，非常简单，容易适应各种方式日志收集，并支持failover和负载均衡。<br>注意：Flume 使用 java 编写，其需要运行在 Java1.6 或更高版本之上。</p>
 <h3 id="flume-ng是怎么工作的"><a href="#flume-ng是怎么工作的" class="headerlink" title="flume-ng是怎么工作的"></a>flume-ng是怎么工作的</h3><h4 id="几个核心概念"><a href="#几个核心概念" class="headerlink" title="几个核心概念"></a>几个核心概念</h4><blockquote>
 <ul>
@@ -357,7 +357,7 @@
 <li>Sink：从Channel中读取并移除Event，将Event传递到Flow Pipeline中的下一个Agent（如果有的话）</li>
 </ul>
 </blockquote>
-<h4 id="数据流模型"><a href="#数据流模型" class="headerlink" title="数据流模型"></a>数据流模型</h4><p><img src="/blog/img/flume-ng-1.png" alt="img"><br>Flume的数据流由事件(Event)贯穿始终。事件是Flume的基本数据单位，它携带日志数据(字节数组形式)并且携带有头信息，这些Event由Agent外部的Source。当Source捕获事件后会进行特定的格式化，然后Source会把事件推入(单个或多个)Channel中。你可以把Channel看作是一个缓冲区，它将保存事件直到Sink处理完该事件。Sink负责持久化日志或者把事件推向另一个Source。<br>很直白的设计，其中值得注意的是，Flume提供了大量内置的Source、Channel和Sink类型。不同类型的Source,Channel和Sink可以自由组合。组合方式基于用户设置的配置文件，非常灵活。比如：Channel可以把事件暂存在内存里，也可以持久化到本地硬盘上。Sink可以把日志写入HDFS, HBase，甚至是另外一个Source等等。</p>
+<h4 id="数据流模型"><a href="#数据流模型" class="headerlink" title="数据流模型"></a>数据流模型</h4><p><img src="/img/flume-ng-1.png" alt="img"><br>Flume的数据流由事件(Event)贯穿始终。事件是Flume的基本数据单位，它携带日志数据(字节数组形式)并且携带有头信息，这些Event由Agent外部的Source。当Source捕获事件后会进行特定的格式化，然后Source会把事件推入(单个或多个)Channel中。你可以把Channel看作是一个缓冲区，它将保存事件直到Sink处理完该事件。Sink负责持久化日志或者把事件推向另一个Source。<br>很直白的设计，其中值得注意的是，Flume提供了大量内置的Source、Channel和Sink类型。不同类型的Source,Channel和Sink可以自由组合。组合方式基于用户设置的配置文件，非常灵活。比如：Channel可以把事件暂存在内存里，也可以持久化到本地硬盘上。Sink可以把日志写入HDFS, HBase，甚至是另外一个Source等等。</p>
 <p>对于直接读取文件Source, 主要有两种方式： </p>
 <p>Exec source</p>
 <p>可通过写Unix command的方式组织数据，最常用的就是tail -F [file]。<br>可以实现实时传输，但在flume不运行和脚本错误时，会丢数据，也不支持断点续传功能。因为没有记录上次文件读到的位置，从而没办法知道，下次再读时，从什么地方开始读。特别是在日志文件一直在增加的时候。flume的source挂了。等flume的source再次开启的这段时间内，增加的日志内容，就没办法被source读取到了。不过flume有一个execStream的扩展，可以自己写一个监控日志增加情况，把增加的日志，通过自己写的工具把增加的内容，传送给flume的node。再传送给sink的node。要是能在tail类的source中能支持，在node挂掉这段时间的内容，等下次node开启后在继续传送，那就更完美了。<br>Spooling Directory Source</p>
