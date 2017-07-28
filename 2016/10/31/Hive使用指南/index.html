@@ -1,0 +1,867 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hive," />
+
+
+
+
+
+  <link rel="alternate" href="/blog/atom.xml" title="Tony's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive使用指南">
+<meta property="og:url" content="http://tonywu.me/blog/2016/10/31/Hive使用指南/index.html">
+<meta property="og:site_name" content="Tony's blog">
+<meta property="og:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Hive.png">
+<meta property="og:updated_time" content="2016-12-21T07:26:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hive使用指南">
+<meta name="twitter:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Hive.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6343948857222628000',
+      author: '博主大人'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://tonywu.me/blog/2016/10/31/Hive使用指南/"/>
+
+
+  <title> Hive使用指南 | Tony's blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7c43569dc80e6636040407e7db1aebf";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/blog/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Tony's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Hive使用指南
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-31T01:19:31-07:00" content="2016-10-31">
+              2016-10-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/10/31/Hive使用指南/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/31/Hive使用指南/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2016/10/31/Hive使用指南/" class="leancloud_visitors" data-flag-title="Hive使用指南">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Hive.png" alt="img"><br><a id="more"></a><br>最近使用Hive来处理工作当中的海量数据,把Hive相关的知识点和平时应用之后的理解整理出来，希望对以后的成长有帮助。</p>
+<h3 id="Hive简介"><a href="#Hive简介" class="headerlink" title="Hive简介"></a>Hive简介</h3><p>hive是基于Hadoop的一个数据仓库工具，可以将结构化的数据文件映射为一张数据库表，并提供简单的sql查询功能，可以将sql语句转换为MapReduce任务进行运行。 其优点是学习成本低，可以通过类SQL语句快速实现简单的MapReduce统计，不必开发专门的MapReduce应用，十分适合数据仓库的统计分析。百度传送门-&gt;<a href="http://baike.baidu.com/link?url=O6i7dtGxeGe8MTZENt5gaa-RZiKXMovyZjZR908SVH169U57o9CeknHpknp589thHHXFYIi51gl3LT_2LOEBRq" target="_blank" rel="external">戳一下</a><br>简单的讲一下运行流程：Hive的执行入口是Driver，执行的SQL语句首先提交到Drive驱动，然后调用compiler解释驱动，最终解释成MapReduce任务去执行。</p>
+<h3 id="服务端组件"><a href="#服务端组件" class="headerlink" title="服务端组件"></a>服务端组件</h3><h4 id="用户接口"><a href="#用户接口" class="headerlink" title="用户接口"></a>用户接口</h4><p>Hive 对外提供了三种服务模式，即 Hive 命令行模式（CLI），Hive 的 Web 模式（WUI），Hive 的远程服务（Client）。</p>
+<p>1、 Hive 命令行模式<br>Hive 命令行模式启动有两种方式。执行这条命令的前提是要配置 Hive 的环境变量。<br>进入 /opt//hive 目录，执行如下命令。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./hive</div></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hive - -service cli</div></pre></td></tr></table></figure></p>
+<p>Hive 命令行模式用于 Linux 平台命令行查询，查询语句基本跟 MySQL 查询语句类似，运行结果如下所示:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-namenode01 ~]<span class="comment"># hive</span></div><div class="line">16/10/31 17:06:17 WARN mapreduce.TableMapReduceUtil: The hbase-prefix-tree module jar containing PrefixTreeCodec is not present.  Continuing without it.</div><div class="line"></div><div class="line">Logging initialized using configuration <span class="keyword">in</span> jar:file:/opt/cloudera/parcels/CDH-5.8.0-1.cdh5.8.0.p0.42/jars/hive-common-1.1.0-cdh5.8.0.jar!/hive-log4j.properties</div><div class="line">WARNING: Hive CLI is deprecated and migration to Beeline is recommended.</div><div class="line">hive&gt;</div></pre></td></tr></table></figure></p>
+<p>2、 Hive Web 模式(没使用过)<br>Hive Web 界面的启动命令如下。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hive - -service hwi</div></pre></td></tr></table></figure></p>
+<p>通过浏览器访问 Hive，默认端口为 9999。</p>
+<p>3 、 Hive的远程服务<br>Hive 远程服务通过 JDBC 等访问来连接 Hive ，这是程序员最需要的方式。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hive  --service hiveserver2 &amp;   //默认端口10000</div><div class="line">hive --service hiveserver2 --hiveconf hive.server2.thrift.port 10002 &amp;  //可以通过命令行直接将端口号改为10002</div></pre></td></tr></table></figure></p>
+<p>hive的远程服务端口号也可以在hive-default.xml文件中配置，修改hive.server2.thrift.port对应的值即可。<br>&lt; property&gt;<br>    &lt; name&gt;hive.server2.thrift.port&lt; /name&gt;<br>    &lt; value&gt;10000&lt; /value&gt;<br>    &lt; description&gt;Port number of HiveServer2 Thrift interface when hive.server2.transport.mode is ‘binary’.&lt; /description&gt;<br>&lt; /property&gt;</p>
+<p>使用Hive JDBC连接,以下是一个简单的列子<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line">package wordcount.api;</div><div class="line">import java.sql.Connection;</div><div class="line">import java.sql.DriverManager;</div><div class="line">import java.sql.ResultSet;</div><div class="line">import java.sql.SQLException;</div><div class="line">import java.sql.Statement;</div><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.List;</div><div class="line">import org.apache.log4j.Logger;</div><div class="line">import wordcount.model.Word;</div><div class="line"></div><div class="line">public class hiveJdbCli &#123;</div><div class="line"></div><div class="line">	private static String drivernName=<span class="string">"org.apache.hive.jdbc.HiveDriver"</span>;</div><div class="line">	private static String url=<span class="string">"jdbc:hive2://192.168.113.100:10000/default"</span>;</div><div class="line">	private static String user=<span class="string">"root"</span>;</div><div class="line">	private static String password=<span class="string">"admin"</span>;</div><div class="line">	private static String sql=<span class="string">""</span>;</div><div class="line">	private static ResultSet res = null;</div><div class="line">	private static final Logger <span class="built_in">log</span> = Logger.getLogger(hiveJdbCli.class);</div><div class="line">	public static void main(String[] args) throws Exception &#123;</div><div class="line"></div><div class="line">		Connection conn = null;</div><div class="line">		Statement stmt = null;</div><div class="line">		String tableName = <span class="string">"HiveTest"</span>;</div><div class="line">		conn = getConn();</div><div class="line">		stmt = conn.createStatement();</div><div class="line">		getWordCount(stmt);</div><div class="line">		//ShowTables(stmt);</div><div class="line">//		CreateTable(stmt, tableName);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static List&lt;Word&gt; getWordCount(Statement stmt) throws SQLException&#123;</div><div class="line"></div><div class="line">		sql = <span class="string">"select word, count(word) from words group by word"</span>;</div><div class="line">		res = stmt.executeQuery(sql);</div><div class="line">		List&lt;Word&gt; list = new ArrayList&lt;Word&gt;();</div><div class="line"> 		<span class="keyword">while</span> (res.next()) &#123;</div><div class="line">     		Word word = new Word();</div><div class="line">			word.setName(res.getString(1));</div><div class="line">			word.setCount(res.getInt(2));</div><div class="line">			list.add(word);</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> list;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	private static boolean ShowTables(Statement stmt) throws Exception &#123;</div><div class="line"></div><div class="line">		sql = <span class="string">"show tables"</span>;</div><div class="line">		res = stmt.executeQuery(sql);</div><div class="line">		<span class="keyword">while</span>(res.next()) &#123;</div><div class="line">			String string = res.getString(1);</div><div class="line">			System.out.println(string);</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> <span class="literal">true</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private static boolean CreateTable(Statement stmt, String tableName) throws Exception&#123;</div><div class="line"></div><div class="line">		sql = <span class="string">"create table "</span> </div><div class="line">			+ tableName </div><div class="line">			+ <span class="string">"(key int, value string)"</span></div><div class="line">			+ <span class="string">"row format delimited "</span></div><div class="line">			+ <span class="string">"fields terminated by '\t'"</span>;</div><div class="line">		<span class="built_in">return</span> stmt.execute(sql);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private static Connection getConn() throws Exception&#123;</div><div class="line"></div><div class="line">		Class.forName(drivernName);</div><div class="line">		Connection conn = DriverManager.getConnection(url, user, password);</div><div class="line">		<span class="built_in">return</span> conn;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>假如我们使用的是框架开发,只需修改连接数据库的配置文件即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">jdbc.driver=org.apache.hive.jdbc.HiveDriver</div><div class="line">jdbc.url=jdbc:hive2://192.168.113.24:10000/result</div><div class="line">jdbc.user=root</div><div class="line">jdbc.password=admin</div></pre></td></tr></table></figure></p>
+<h4 id="MetaStore组件-元数据存储"><a href="#MetaStore组件-元数据存储" class="headerlink" title="MetaStore组件(元数据存储)"></a>MetaStore组件(元数据存储)</h4><p>将元数据存储在 RDBMS 中，一般常用 MySQL 和 Derby，支持把metastore独立出来放在远程的集群上面，使得hive更加健壮。默认情况下，Hive 元数据保存在内嵌的 Derby 数据库中，只能允许一个会话连接，只适合简单的测试。实际生产环境中不适用， 为了支持多用户会话，则需要一个独立的元数据库，使用 MySQL 作为元数据库，Hive 内部对 MySQL 提供了很好的支持。<br>所以安装Hive时，需要先配置一个独立的元数据库，元数据主要包括了表的名称、表的列、分区和属性、表的属性（是不是外部表等等）、表的数据所在的目录。安装方法就不在这里介绍了。</p>
+<h4 id="Driver组件"><a href="#Driver组件" class="headerlink" title="Driver组件"></a>Driver组件</h4><p>该组件包括：Compiler、Optimizer、Executor,它可以将Hive的编译、解析、优化转化为MapReduce任务提交给JobTracker或者是SourceManager来进行实际的执行相应的任务。</p>
+<h3 id="Hive原理"><a href="#Hive原理" class="headerlink" title="Hive原理"></a>Hive原理</h3><p>流程大致步骤为:<br>1.用户提交查询等任务给Driver。<br>2.编译器获得该用户的任务Plan。<br>3.编译器Compiler根据用户任务去MetaStore中获取需要的Hive的元数据信息。<br>4.编译器Compiler得到元数据信息，对任务进行编译，先将HiveQL转换为抽象语法树，然后将抽象语法树转换成查询块，将查询块转化为逻辑的查询计划，重写逻辑查询计划，将逻辑计划转化为物理的计划（MapReduce）, 最后选择最佳的策略。<br>5.将最终的计划提交给Driver。<br>6.Driver将计划Plan转交给ExecutionEngine去执行，获取元数据信息，提交给JobTracker或者SourceManager执行该任务，任务会直接读取HDFS中文件进行相应的操作。<br>7.获取执行的结果。<br>8.取得并返回执行结果。</p>
+<p>1)解析器（parser）：将查询字符串转化为解析树表达式。<br>2)语义分析器（semantic analyzer）：将解析树表达式转换为基于块（block-based）的内部查询表达式，将输入表的模式（schema）信息从 metastore 中进行恢复。用这些信息验证列名， 展开 SELECT * 以及类型检查（固定类型转换也包含在此检查中）。<br>3)逻辑策略生成器（logical plan generator）：将内部查询表达式转换为逻辑策略，这些策略由逻辑操作树组成。<br>4)优化器（optimizer）：通过逻辑策略构造多途径并以不同方式重写。优化器的功能如下。<br>将多 multiple join 合并为一个 multi-way join；<br>对join、group-by 和自定义的 map-reduce 操作重新进行划分；<br>消减不必要的列；<br>在表扫描操作中推行使用断言（predicate）；<br>对于已分区的表，消减不必要的分区；<br>在抽样（sampling）查询中，消减不必要的桶。</p>
+<h3 id="Hive安装"><a href="#Hive安装" class="headerlink" title="Hive安装"></a>Hive安装</h3><p>1.先安装Mysql，用来存储元数据。传送门-&gt;<a href="http://jingyan.baidu.com/article/a378c9609eb652b3282830fd.html" target="_blank" rel="external">戳一下</a><br>2.下载Hive安装包并解压安装。传送门-&gt;<a href="http://mirrors.cnnic.cn/apache/hive/" target="_blank" rel="external">戳一下</a><br>3.配置Hive：<br>a. 进入conf目录  cp hive-default.xml.template hive-site.xml<br>b. hive-site.xml配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">	&lt;property&gt;</div><div class="line">	    &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;</div><div class="line">	    &lt;value&gt;jdbc:mysql://master00:3306/hive?createDatabaseIfNotExist=<span class="literal">true</span>&lt;/value&gt;</div><div class="line">	    &lt;description&gt;JDBC connect string <span class="keyword">for</span> a JDBC metastore&lt;/description&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">	&lt;property&gt;</div><div class="line">	    &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;</div><div class="line">	     &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;</div><div class="line">	     &lt;description&gt;Driver class name <span class="keyword">for</span> a JDBC metastore&lt;/description&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">	 &lt;property&gt;</div><div class="line">	    &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;</div><div class="line">	    &lt;value&gt;root&lt;/value&gt;</div><div class="line">	    &lt;description&gt;Username to use against metastore database&lt;/description&gt;</div><div class="line">	 &lt;/property&gt;</div><div class="line">	 &lt;property&gt;</div><div class="line">	 	&lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;</div><div class="line">	    &lt;value&gt;admin&lt;/value&gt;</div><div class="line">	    &lt;description&gt;password to use against metastore database&lt;/description&gt;</div><div class="line">	 &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure></p>
+<p>c. 拷贝驱动包到hive/lib目录下 cp mysql-connector-java-5.1.39-bin.jar  ../../softwares/hive/lib/<br>d. 启动hadoop<br>e. 将hive/lib目录下最新的jline-2.12.jar包拷贝到/hadoop/share/hadoop/yarn/lib/目录下，将原有的jline.jar备份<br>f. 启动hive测试运行。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-namenode01 ~]<span class="comment"># hive</span></div><div class="line">16/11/01 10:13:58 WARN mapreduce.TableMapReduceUtil: The hbase-prefix-tree module jar containing PrefixTreeCodec is not present.  Continuing without it.</div><div class="line">Logging initialized using configuration <span class="keyword">in</span> jar:file:/opt/cloudera/parcels/CDH-5.8.0-1.cdh5.8.0.p0.42/jars/hive-common-1.1.0-cdh5.8.0.jar!/hive-log4j.properties</div><div class="line">WARNING: Hive CLI is deprecated and migration to Beeline is recommended.</div><div class="line">hive&gt;</div></pre></td></tr></table></figure></p>
+<p>g. 安装完毕</p>
+<h3 id="常用的HQL-例举一些工作常用的"><a href="#常用的HQL-例举一些工作常用的" class="headerlink" title="常用的HQL(例举一些工作常用的)"></a>常用的HQL(例举一些工作常用的)</h3><h4 id="创建HIVE表"><a href="#创建HIVE表" class="headerlink" title="创建HIVE表"></a>创建HIVE表</h4><p>create table yt_daily_install(mac_int int,add_time string) partitioned by(dt string);</p>
+<h4 id="创建临时表并该表添加数据"><a href="#创建临时表并该表添加数据" class="headerlink" title="创建临时表并该表添加数据"></a>创建临时表并该表添加数据</h4><p>create temporary table rate SELECT round(c.num/d.mac_int, 2) as r, c.date as t FROM day_keep_41 AS c, yt_daily_install AS d WHERE c.date = d.add_time;</p>
+<h4 id="插入Hive表"><a href="#插入Hive表" class="headerlink" title="插入Hive表"></a>插入Hive表</h4><p> insert into(overwrite) result.yt_daily_install partition (dt=”2016.04-08”) select count(b.mac),to_date(b.add_time) from (select * from (select mac, add_time,prod_id, ROW_NUMBER() over(partition by mac order by add_time) as new_index from yt_data.yt_mac_copy) a where a.new_index=1) b where prod_id=”41” group by to_date(b.add_time);<br>两者的区别：<br>insert overwrite 会覆盖已经存在的数据，我们假设要插入的数据和已经存在的N条数据一样，那么插入后只会保留一条数据；<br>insert into 只是简单的copy插入，不做重复性校验，如果插入前有N条数据和要插入的数据一样，那么插入后会有N+1条数据；</p>
+<h4 id="为表新增字段"><a href="#为表新增字段" class="headerlink" title="为表新增字段"></a>为表新增字段</h4><p>alter table day_keep_41 add retention_rate varchar(25);</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Hive/" rel="tag">#Hive</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2016/10/30/sqoop详解以及使用大全/" rel="next" title="sqoop详解以及使用大全">
+                <i class="fa fa-chevron-left"></i> sqoop详解以及使用大全
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2016/11/01/git使用指南/" rel="prev" title="git使用指南">
+                git使用指南 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/10/31/Hive使用指南/"
+     data-title="Hive使用指南"
+     data-content=""
+     data-url="http://tonywu.me/blog/blog/2016/10/31/Hive使用指南/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/31/Hive使用指南/"
+           data-title="Hive使用指南" data-url="http://tonywu.me/blog/blog/2016/10/31/Hive使用指南/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/avatar.png"
+               alt="Tony" />
+          <p class="site-author-name" itemprop="name">Tony</p>
+          <p class="site-description motion-element" itemprop="description">放眼望去，那是一抹抹碧绿的倩影，当蝴蝶乱舞在其周围，当枝条上的露珠不忍离去，这或许，就是生命的盎然与生生不息。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/blog/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/blog/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ohgood" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/tonyshuaishuaide" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/tony." target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://haiwx.coding.me" title="儿科" target="_blank">儿科</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.daixin.me/" title="Prosperdai" target="_blank">Prosperdai</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="Https://l-c.pw" title="绿野仙葱" target="_blank">绿野仙葱</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hive简介"><span class="nav-number">1.</span> <span class="nav-text">Hive简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端组件"><span class="nav-number">2.</span> <span class="nav-text">服务端组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用户接口"><span class="nav-number">2.1.</span> <span class="nav-text">用户接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MetaStore组件-元数据存储"><span class="nav-number">2.2.</span> <span class="nav-text">MetaStore组件(元数据存储)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Driver组件"><span class="nav-number">2.3.</span> <span class="nav-text">Driver组件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hive原理"><span class="nav-number">3.</span> <span class="nav-text">Hive原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hive安装"><span class="nav-number">4.</span> <span class="nav-text">Hive安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的HQL-例举一些工作常用的"><span class="nav-number">5.</span> <span class="nav-text">常用的HQL(例举一些工作常用的)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建HIVE表"><span class="nav-number">5.1.</span> <span class="nav-text">创建HIVE表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建临时表并该表添加数据"><span class="nav-number">5.2.</span> <span class="nav-text">创建临时表并该表添加数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入Hive表"><span class="nav-number">5.3.</span> <span class="nav-text">插入Hive表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为表新增字段"><span class="nav-number">5.4.</span> <span class="nav-text">为表新增字段</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ifuleyou"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/blog/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/blog/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("hS2BgoD8m7jNPwFfIBWjhe2r-gzGzoHsz", "Aq1UGC2wlvnayKdRkBJBlhnH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
