@@ -68,7 +68,7 @@
 <link href="/blog/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux命令," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -86,17 +86,19 @@
 
 
 
+<meta name="description" content="###shiro简介
+####简介Apache Shiro是Java的一个安全框架。目前，使用Apache Shiro的人越来越多，因为它相当简单，对比spring Security，可能没有Spring Security做的功能强大，但是在实际工作时可能并不需要那么复杂的东西，所以使用小而简单的Shiro就足够了。对于它俩到底哪个好，这个不必纠结，能更简单的解决项目问题就好了。本教程只介绍基本的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux命令使用方法">
-<meta property="og:url" content="http://tonywu.me/blog/2016/11/17/Linux命令使用方法/index.html">
+<meta property="og:title" content="Tony's blog">
+<meta property="og:url" content="http://tonywu.me/blog/2017/07/28/shiro实战-简介/index.html">
 <meta property="og:site_name" content="Tony's blog">
-<meta property="og:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Linux.png">
-<meta property="og:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/Linux命令-1.png">
-<meta property="og:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/Linxu-touch.png">
-<meta property="og:updated_time" content="2016-12-21T07:30:34.000Z">
+<meta property="og:description" content="###shiro简介
+####简介Apache Shiro是Java的一个安全框架。目前，使用Apache Shiro的人越来越多，因为它相当简单，对比spring Security，可能没有Spring Security做的功能强大，但是在实际工作时可能并不需要那么复杂的东西，所以使用小而简单的Shiro就足够了。对于它俩到底哪个好，这个不必纠结，能更简单的解决项目问题就好了。本教程只介绍基本的">
+<meta property="og:updated_time" content="2017-07-28T07:04:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux命令使用方法">
-<meta name="twitter:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Linux.png">
+<meta name="twitter:title" content="Tony's blog">
+<meta name="twitter:description" content="###shiro简介
+####简介Apache Shiro是Java的一个安全框架。目前，使用Apache Shiro的人越来越多，因为它相当简单，对比spring Security，可能没有Spring Security做的功能强大，但是在实际工作时可能并不需要那么复杂的东西，所以使用小而简单的Shiro就足够了。对于它俩到底哪个好，这个不必纠结，能更简单的解决项目问题就好了。本教程只介绍基本的">
 
 
 
@@ -117,10 +119,10 @@
 
 
 
-  <link rel="canonical" href="http://tonywu.me/blog/2016/11/17/Linux命令使用方法/"/>
+  <link rel="canonical" href="http://tonywu.me/blog/2017/07/28/shiro实战-简介/"/>
 
 
-  <title> Linux命令使用方法 | Tony's blog </title>
+  <title>  | Tony's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +272,7 @@
             
             
               
-                Linux命令使用方法
+                
               
             
           </h1>
@@ -282,30 +284,11 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-17T06:47:15-08:00" content="2016-11-17">
-              2016-11-17
+            <time itemprop="dateCreated" datetime="2017-07-28T00:05:20-07:00" content="2017-07-28">
+              2017-07-28
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -316,7 +299,7 @@
 
           
           
-             <span id="/blog/2016/11/17/Linux命令使用方法/" class="leancloud_visitors" data-flag-title="Linux命令使用方法">
+             <span id="/blog/2017/07/28/shiro实战-简介/" class="leancloud_visitors" data-flag-title="">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -338,14 +321,10 @@
       
 
       
-        <p><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Linux.png" alt="img"><br><a id="more"></a><br>平时用到的，碰到一个就整理一个。</p>
-<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>查找linux系统中名字为hbase的文件:<br>find / -name “hbase”<br><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/Linux命令-1.png" alt="img"><br>如果你要找的这个文件是hbase.sh或者你只知道hbase 忘了后面的.sh,则需要以下命令<br>find / -name “hbase*”</p>
-<h3 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h3><p>jps(Java Virtual Machine Process Status Tool)是JDK 1.5提供的一个显示当前所有Java进程pid的命令，简单实用，非常适合在Linux/unix平台上简单察看当前java进程的一些简单情况。<br>jps存放在JAVA_HOME/bin/jps，使用时为了方便请将JAVA_HOME/bin/加入到Path.<br>比较常用的参数：<br>-q 只显示pid，不显示class名称,jar文件名和传递给main 方法的参数<br>-m 输出传递给main 方法的参数，在嵌入式jvm上可能是null<br>-l 输出应用程序main class的完整package名 或者 应用程序的jar文件完整路径名<br>-v 输出传递给JVM的参数</p>
-<h3 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h3><p>使用指令”touch”时，如果指定的文件不存在，则将创建一个新的空白文件。例如，在当前目录下，使用该指令创建一个空白文件”file”，输入如下命令：<br>$ touch a.txt            #创建一个名为“file”的新的空白文件<br>使用指令”touch”修改文件”testfile”的时间属性为当前系统时间，输入如下命令：<br>$ touch a.txt                 #修改文件的时间属性<br>首先，使用ls命令查看testfile文件的属性，如下所示：<br>$ ls -l a.txt                 #查看文件的时间属性<br>执行指令”touch”修改文件属性以后，并再次查看该文件的时间属性<br>$ touch a.txt                 #修改文件时间属性为当前系统时间<br>$ ls -l a.txt                 #查看文件的时间属性<br>查看时间对比，图片如下：<br><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/Linxu-touch.png" alt="img"></p>
-<h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><p>从键盘创建一个文件。$ cat &gt; b.txt 加入不向往文件输入内容，Ctrl+d,直接退出；让想输入，直接输入内容，Ctrl+d再退出：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-namenode01 media]<span class="comment"># cat &gt; b.txt</span></div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td></tr></table></figure></p>
-<p>查看文件内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-namenode01 media]<span class="comment"># cat b.txt</span></div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td></tr></table></figure></p>
-<p>将几个文件合并为一个文件： cat a.txt b.txt &gt; c.txt：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-namenode01 media]<span class="comment"># cat c.txt </span></div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">[root@hadoop-namenode01 media]<span class="comment">#</span></div></pre></td></tr></table></figure></p>
-<h3 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h3><p>创建文件夹，-p 确保目录名称存在，不存在的就建一个。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-namenode01 media]<span class="comment"># ls</span></div><div class="line">[root@hadoop-namenode01 media]<span class="comment"># mkdir a.txt</span></div><div class="line">[root@hadoop-namenode01 media]<span class="comment"># mkdir -p test/a.txt</span></div><div class="line">[root@hadoop-namenode01 media]<span class="comment"># ls</span></div><div class="line">a.txt  <span class="built_in">test</span></div><div class="line">[root@hadoop-namenode01 media]<span class="comment">#</span></div></pre></td></tr></table></figure></p>
+        <p>###shiro简介</p>
+<p>####简介<br>Apache Shiro是Java的一个安全框架。目前，使用Apache Shiro的人越来越多，因为它相当简单，对比spring Security，可能没有Spring Security做的功能强大，但是在实际工作时可能并不需要那么复杂的东西，所以使用小而简单的Shiro就足够了。对于它俩到底哪个好，这个不必纠结，能更简单的解决项目问题就好了。<br>本教程只介绍基本的Shiro使用，不会过多分析源码等，重在使用。<br>Shiro可以非常容易的开发出足够好的应用，其不仅可以用在JavaSE环境，也可以用在JavaEE环境。Shiro可以帮助我们完成：认证、授权、加密、会话管理、与Web集成、缓存等。这不就是我们想要的嘛，而且Shiro的API也是非常简单；其基本功能点：<br>Authentication：身份认证/登录，验证用户是不是拥有相应的身份；<br>Authorization：授权，即权限验证，验证某个已认证的用户是否拥有某个权限；即判断用户是否能做事情，常见的如：验证某个用户是否拥有某个角色。或者细粒度的验证某个用户对某个资源是否具有某个权限；<br>Session Manager：会话管理，即用户登录后就是一次会话，在没有退出之前，它的所有信息都在会话中；会话可以是普通JavaSE环境的，也可以是如Web环境的；<br>Cryptography：加密，保护数据的安全性，如密码加密存储到数据库，而不是明文存储；<br>Web Support：Web支持，可以非常容易的集成到Web环境；<br>Caching：缓存，比如用户登录后，其用户信息、拥有的角色/权限不必每次去查，这样可以提高效率；<br>Concurrency：shiro支持多线程应用的并发验证，即如在一个线程中开启另一个线程，能把权限自动传播过去；<br>Testing：提供测试支持；<br>Run As：允许一个用户假装为另一个用户（如果他们允许）的身份进行访问；<br>Remember Me：记住我，这个是非常常见的功能，即一次登录后，下次再来的话不用登录了。</p>
+<p>记住一点，Shiro不会去维护用户、维护权限；这些需要我们自己去设计/提供；然后通过相应的接口注入给Shiro即可。</p>
+<p>接下来我们分别从外部和内部来看看Shiro的架构，对于一个好的框架，从外部来看应该具有非常简单易于使用的API，且API契约明确；从内部来看的话，其应该有一个可扩展的架构，即非常容易插入用户自定义实现，因为任何框架都不能满足所有需求。</p>
 
       
     </div>
@@ -366,28 +345,18 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/blog/tags/Linux命令/" rel="tag">#Linux命令</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2016/11/15/Java-bug系列一/" rel="next" title="Java bug系列一">
-                <i class="fa fa-chevron-left"></i> Java bug系列一
+              <a href="/blog/2017/05/11/Spring-MVC中aop对controller切面编程跳不进去切面/" rel="next" title="Spring MVC中aop对controller切面编程跳不进去切面">
+                <i class="fa fa-chevron-left"></i> Spring MVC中aop对controller切面编程跳不进去切面
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2016/11/24/Mysql性能优化方法概述/" rel="prev" title="Mysql性能优化方法概述">
-                Mysql性能优化方法概述 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -562,7 +531,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">1.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jps"><span class="nav-number">2.</span> <span class="nav-text">jps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#touch"><span class="nav-number">3.</span> <span class="nav-text">touch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cat"><span class="nav-number">4.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mkdir"><span class="nav-number">5.</span> <span class="nav-text">mkdir</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
