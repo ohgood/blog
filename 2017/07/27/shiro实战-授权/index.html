@@ -68,7 +68,7 @@
 <link href="/blog/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java,bug," />
+  <meta name="keywords" content="shiro," />
 
 
 
@@ -86,17 +86,18 @@
 
 
 
+<meta name="description" content="加密Shiro还提供了通用的散列支持,通过调用SimpleHash时指定散列算法，其内部使用了Java的MessageDigest实现。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java bug系列一">
-<meta property="og:url" content="http://tonywu.me/blog/2016/11/15/Java-bug系列一/index.html">
+<meta property="og:title" content="shiro授权">
+<meta property="og:url" content="http://tonywu.me/blog/2017/07/27/shiro实战-授权/index.html">
 <meta property="og:site_name" content="Tony's blog">
-<meta property="og:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/java-bug.png">
-<meta property="og:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/java-bug1.png">
-<meta property="og:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img//java-bug2.png">
-<meta property="og:updated_time" content="2016-12-21T08:30:39.000Z">
+<meta property="og:description" content="加密Shiro还提供了通用的散列支持,通过调用SimpleHash时指定散列算法，其内部使用了Java的MessageDigest实现。">
+<meta property="og:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Apache.png">
+<meta property="og:updated_time" content="2017-07-28T07:39:57.343Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java bug系列一">
-<meta name="twitter:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/java-bug.png">
+<meta name="twitter:title" content="shiro授权">
+<meta name="twitter:description" content="加密Shiro还提供了通用的散列支持,通过调用SimpleHash时指定散列算法，其内部使用了Java的MessageDigest实现。">
+<meta name="twitter:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Apache.png">
 
 
 
@@ -117,10 +118,10 @@
 
 
 
-  <link rel="canonical" href="http://tonywu.me/blog/2016/11/15/Java-bug系列一/"/>
+  <link rel="canonical" href="http://tonywu.me/blog/2017/07/27/shiro实战-授权/"/>
 
 
-  <title> Java bug系列一 | Tony's blog </title>
+  <title> shiro授权 | Tony's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +271,7 @@
             
             
               
-                Java bug系列一
+                shiro授权
               
             
           </h1>
@@ -282,8 +283,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-15T03:55:09-08:00" content="2016-11-15">
-              2016-11-15
+            <time itemprop="dateCreated" datetime="2017-07-27T11:00:18-07:00" content="2017-07-27">
+              2017-07-27
             </time>
           </span>
 
@@ -296,8 +297,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/blog/categories/shiro/" itemprop="url" rel="index">
+                    <span itemprop="name">shiro</span>
                   </a>
                 </span>
 
@@ -316,7 +317,7 @@
 
           
           
-             <span id="/blog/2016/11/15/Java-bug系列一/" class="leancloud_visitors" data-flag-title="Java bug系列一">
+             <span id="/blog/2017/07/27/shiro实战-授权/" class="leancloud_visitors" data-flag-title="shiro授权">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -338,8 +339,10 @@
       
 
       
-        <p><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/java-bug.png" alt="img"><br><a id="more"></a><br>今天从SVN上拉项目出现了一个问题，然后把这个问题的解决方法记录一下。<br>我在maven install的时候出现了下面的问题：<br><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/java-bug1.png" alt="img"></p>
-<p>解决方法：<br>点击Eclipse菜单：Window-&gt;Preferences-&gt;Java-&gt;InstalledJREs,选择右侧的Edit来修改JREs,之前我的JREhome设置的是：C:\ProgramFiles\Jave\jre6，这个位置下是没有tools.jar包的，修改成：C:\ProgramFiles\Java\jdk1.6.0_25，然后点击弹出窗口的Finish按钮和主页面中的OK按钮，则问题解决。<br>然后再maven install一下，结果如下：<br><img src="http://7xpm82.com1.z0.glb.clouddn.com/img//java-bug2.png" alt="img"><br>原因：<br>关于tools.jar的作用，认为是用来生成javadoc的包，但是我们平时开发的时候是不会用到这个包的，因为我们开发不许要生成javadoc的这个功能，所以在我们eclipse中配置的jre没有添加tools.jar包，所以这个时候如果我们的项目中需要对项目生成javadoc，比如这里我们使用了maven中生成javadoc的报告，这个时候我们有必要把这个tools.jar的包加入到项目中，没有添加的时候，在运行maven的install的时候将会报错。</p>
+        <h4 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h4><p>Shiro还提供了通用的散列支持,通过调用SimpleHash时指定散列算法，其内部使用了Java的MessageDigest实现。<br><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Apache.png" alt="img"><br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">public class PasswordHelper &#123;</div><div class="line"></div><div class="line">    private RandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();</div><div class="line">    private String algorithmName = &quot;md5&quot;;</div><div class="line">    private int hashIterations = 2;</div><div class="line"></div><div class="line">    public void setRandomNumberGenerator(RandomNumberGenerator randomNumberGenerator) &#123;</div><div class="line">        this.randomNumberGenerator = randomNumberGenerator;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setAlgorithmName(String algorithmName) &#123;</div><div class="line">        this.algorithmName = algorithmName;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setHashIterations(int hashIterations) &#123;</div><div class="line">        this.hashIterations = hashIterations;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void encryptPassword(User user) &#123;</div><div class="line"></div><div class="line">        user.setSalt(randomNumberGenerator.nextBytes().toHex());</div><div class="line"></div><div class="line">        String newPassword = new SimpleHash(</div><div class="line">                algorithmName,</div><div class="line">                user.getPassword(),</div><div class="line">                ByteSource.Util.bytes(user.getCredentialsSalt()),</div><div class="line">                hashIterations).toHex();</div><div class="line"></div><div class="line">        user.setPassword(newPassword);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">     * 认证操作，判断一个请求是否被允许进入系统</div><div class="line">     * @param token</div><div class="line">     * @return</div><div class="line">     * @throws AuthenticationException</div><div class="line">     */</div><div class="line">    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException &#123;</div><div class="line">        String username = (String)token.getPrincipal();</div><div class="line">        log.info(&quot;doGetAuthenticationInfo = &quot; + username);</div><div class="line">        User user = userService.findByUsername(username);</div><div class="line">        if(user == null) &#123;</div><div class="line">            throw new UnknownAccountException();//没找到帐号</div><div class="line">        &#125;</div><div class="line">        if(Boolean.TRUE.equals(user.getLocked())) &#123;</div><div class="line">            throw new LockedAccountException(); //帐号锁定</div><div class="line">        &#125;</div><div class="line">        //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现</div><div class="line">        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(</div><div class="line">                user.getUsername(), //用户名</div><div class="line">                user.getPassword(), //密码</div><div class="line">                ByteSource.Util.bytes(user.getCredentialsSalt()),//salt=username+salt</div><div class="line">                getName()  //realm name</div><div class="line">        );</div><div class="line">        return authenticationInfo;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>此处就是把步骤1中生成的相应数据组装为SimpleAuthenticationInfo，通过SimpleAuthenticationInfo的credentialsSalt设置盐，HashedCredentialsMatcher会自动识别这个盐。</p>
+<h5 id="密码重试次数限制"><a href="#密码重试次数限制" class="headerlink" title="密码重试次数限制"></a>密码重试次数限制</h5><p>如在1个小时内密码最多重试5次，如果尝试次数超过5次就锁定1小时，1小时后可再次重试，如果还是重试失败，可以锁定如1天，以此类推，防止密码被暴力破解。我们通过继承HashedCredentialsMatcher，且使用Ehcache记录重试次数和超时时间。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 登录次数验证， 防止穷举破解</div><div class="line"> *</div><div class="line"> * 10分钟内最多尝试登录10次</div><div class="line"> */</div><div class="line">public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher &#123;</div><div class="line"></div><div class="line">    private Cache&lt;String, AtomicInteger&gt; passwordRetryCache;</div><div class="line"></div><div class="line">    public RetryLimitHashedCredentialsMatcher(CacheManager cacheManager) &#123;</div><div class="line">        passwordRetryCache = cacheManager.getCache(&quot;passwordRetryCache&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) &#123;</div><div class="line">        String username = (String)token.getPrincipal();</div><div class="line">        //retry count + 1</div><div class="line">        AtomicInteger retryCount = passwordRetryCache.get(username);</div><div class="line">        if(retryCount == null) &#123;</div><div class="line">            retryCount = new AtomicInteger(0);</div><div class="line">            passwordRetryCache.put(username, retryCount);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        if(retryCount.incrementAndGet() &gt; 10) &#123;</div><div class="line">            //if retry count &gt; 10 throw</div><div class="line">            throw new ExcessiveAttemptsException();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        boolean matches = super.doCredentialsMatch(token, info);</div><div class="line">        if(matches) &#123;</div><div class="line">            //clear retry count</div><div class="line">            passwordRetryCache.remove(username);</div><div class="line">        &#125;</div><div class="line">        return matches;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -362,9 +365,7 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/Java/" rel="tag">#Java</a>
-          
-            <a href="/blog/tags/bug/" rel="tag">#bug</a>
+            <a href="/blog/tags/shiro/" rel="tag">#shiro</a>
           
         </div>
       
@@ -373,16 +374,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2016/11/09/Mysql性能优化-索引/" rel="next" title="Mysql性能优化---索引">
-                <i class="fa fa-chevron-left"></i> Mysql性能优化---索引
+              <a href="/blog/2017/05/11/Spring-MVC中aop对controller切面编程跳不进去切面/" rel="next" title="Spring MVC中aop对controller切面编程跳不进去切面">
+                <i class="fa fa-chevron-left"></i> Spring MVC中aop对controller切面编程跳不进去切面
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2016/11/17/Linux命令使用方法/" rel="prev" title="Linux命令使用方法">
-                Linux命令使用方法 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2017/07/27/shiro实战-简介/" rel="prev" title="shiro简介">
+                shiro简介 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -558,7 +559,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#加密"><span class="nav-number">1.</span> <span class="nav-text">加密</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#密码重试次数限制"><span class="nav-number">1.1.</span> <span class="nav-text">密码重试次数限制</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
