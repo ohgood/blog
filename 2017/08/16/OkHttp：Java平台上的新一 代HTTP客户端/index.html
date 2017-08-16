@@ -86,20 +86,17 @@
 
 
 
-<meta name="description" content="&amp;lt;
-OkHttp 简介OkHttp 库的设计和实现的首要目标是高效。这也是选择 OkHttp 的重要理由之一。OkHttp 提供了对最新的 HTTP 协议版本 HTTP/2 和 SPDY 的支持，这使得对同一个主机发出的所有请求都可以共享相同的套接字连接。如果 HTTP/2 和 SPDY 不可用，OkHttp 会使用连接池来复用连接以提高效率。OkHttp 提供了对 GZIP 的默认支持来降">
+<meta name="description" content="OkHttp 简介OkHttp 库的设计和实现的首要目标是高效。这也是选择 OkHttp 的重要理由之一。OkHttp 提供了对最新的 HTTP 协议版本 HTTP/2 和 SPDY 的支持，这使得对同一个主机发出的所有请求都可以共享相同的套接字连接。如果 HTTP/2 和 SPDY 不可用，OkHttp 会使用连接池来复用连接以提高效率。OkHttp 提供了对 GZIP 的默认支持来降低传输内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OkHttp：Java 平台上的新一代 HTTP 客户端（笔记）">
 <meta property="og:url" content="http://tonywu.me/blog/2017/08/16/OkHttp：Java平台上的新一 代HTTP客户端/index.html">
 <meta property="og:site_name" content="Tony's blog">
-<meta property="og:description" content="&amp;lt;
-OkHttp 简介OkHttp 库的设计和实现的首要目标是高效。这也是选择 OkHttp 的重要理由之一。OkHttp 提供了对最新的 HTTP 协议版本 HTTP/2 和 SPDY 的支持，这使得对同一个主机发出的所有请求都可以共享相同的套接字连接。如果 HTTP/2 和 SPDY 不可用，OkHttp 会使用连接池来复用连接以提高效率。OkHttp 提供了对 GZIP 的默认支持来降">
+<meta property="og:description" content="OkHttp 简介OkHttp 库的设计和实现的首要目标是高效。这也是选择 OkHttp 的重要理由之一。OkHttp 提供了对最新的 HTTP 协议版本 HTTP/2 和 SPDY 的支持，这使得对同一个主机发出的所有请求都可以共享相同的套接字连接。如果 HTTP/2 和 SPDY 不可用，OkHttp 会使用连接池来复用连接以提高效率。OkHttp 提供了对 GZIP 的默认支持来降低传输内">
 <meta property="og:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/java.jpg">
-<meta property="og:updated_time" content="2017-08-16T07:22:55.056Z">
+<meta property="og:updated_time" content="2017-08-16T07:26:59.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OkHttp：Java 平台上的新一代 HTTP 客户端（笔记）">
-<meta name="twitter:description" content="&amp;lt;
-OkHttp 简介OkHttp 库的设计和实现的首要目标是高效。这也是选择 OkHttp 的重要理由之一。OkHttp 提供了对最新的 HTTP 协议版本 HTTP/2 和 SPDY 的支持，这使得对同一个主机发出的所有请求都可以共享相同的套接字连接。如果 HTTP/2 和 SPDY 不可用，OkHttp 会使用连接池来复用连接以提高效率。OkHttp 提供了对 GZIP 的默认支持来降">
+<meta name="twitter:description" content="OkHttp 简介OkHttp 库的设计和实现的首要目标是高效。这也是选择 OkHttp 的重要理由之一。OkHttp 提供了对最新的 HTTP 协议版本 HTTP/2 和 SPDY 的支持，这使得对同一个主机发出的所有请求都可以共享相同的套接字连接。如果 HTTP/2 和 SPDY 不可用，OkHttp 会使用连接池来复用连接以提高效率。OkHttp 提供了对 GZIP 的默认支持来降低传输内">
 <meta name="twitter:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/java.jpg">
 
 
@@ -342,8 +339,8 @@ OkHttp 简介OkHttp 库的设计和实现的首要目标是高效。这也是选
       
 
       
-        <p><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/java.jpg" alt="img"><br>&lt;</p>
-<h4 id="OkHttp-简介"><a href="#OkHttp-简介" class="headerlink" title="OkHttp 简介"></a>OkHttp 简介</h4><p>OkHttp 库的设计和实现的首要目标是高效。这也是选择 OkHttp 的重要理由之一。OkHttp 提供了对最新的 HTTP 协议版本 HTTP/2 和 SPDY 的支持，这使得对同一个主机发出的所有请求都可以共享相同的套接字连接。如果 HTTP/2 和 SPDY 不可用，OkHttp 会使用连接池来复用连接以提高效率。OkHttp 提供了对 GZIP 的默认支持来降低传输内容的大小。OkHttp 也提供了对 HTTP 响应的缓存机制，可以避免不必要的网络请求。当网络出现问题时，OkHttp 会自动重试一个主机的多个 IP 地址。<br>!– more –&gt;<br>在 Java 程序中使用 OkHttp 非常简单，只需要在 Maven 的 POM 文件中以下依赖即可。</p>
+        <p><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/java.jpg" alt="img"></p>
+<h4 id="OkHttp-简介"><a href="#OkHttp-简介" class="headerlink" title="OkHttp 简介"></a>OkHttp 简介</h4><p>OkHttp 库的设计和实现的首要目标是高效。这也是选择 OkHttp 的重要理由之一。OkHttp 提供了对最新的 HTTP 协议版本 HTTP/2 和 SPDY 的支持，这使得对同一个主机发出的所有请求都可以共享相同的套接字连接。如果 HTTP/2 和 SPDY 不可用，OkHttp 会使用连接池来复用连接以提高效率。OkHttp 提供了对 GZIP 的默认支持来降低传输内容的大小。OkHttp 也提供了对 HTTP 响应的缓存机制，可以避免不必要的网络请求。当网络出现问题时，OkHttp 会自动重试一个主机的多个 IP 地址。<br><a id="more"></a><br>在 Java 程序中使用 OkHttp 非常简单，只需要在 Maven 的 POM 文件中以下依赖即可。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp --&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;com.squareup.okhttp3&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;okhttp&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;3.8.1&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
 <h4 id="HTTP-头处理"><a href="#HTTP-头处理" class="headerlink" title="HTTP 头处理"></a>HTTP 头处理</h4><p>HTTP 头是 HTTP 请求和响应中的重要组成部分。在创建 HTTP 请求时需要设置一些 HTTP 头。在得到 HTTP 的响应之后，也会需要对其中包含的 HTTP 头进行解析。从代码的角度来说，HTTP 头的数据结构是 Map<string, list<string="">&gt;类型。也就是说，对于每个 HTTP 头，可能有多个值。但是大部分 HTTP 头都只有一个值，只有少部分 HTTP 头允许多个值。OkHttp 采用了简单的方式来区分这两种类型，使得对 HTTP 头的使用更加简单。</string,></p>
 <p>在设置 HTTP 头时，使用 header(name, value) 方法来设置 HTTP 头的唯一值。对同一个 HTTP 头，多次调用该方法会覆盖之前设置的值。使用 addHeader(name, value) 方法来为 HTTP 头添加新的值。在读取 HTTP 头时，使用 header(name) 方法来读取 HTTP 头的最近出现的值。如果该 HTTP 头只有单个值，则返回该值；如果有多个值，则返回最后一个值。使用 headers(name) 方法来读取 HTTP 头的所有值。</p>
