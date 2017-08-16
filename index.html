@@ -271,6 +271,156 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2017/08/16/OkHttp：Java平台上的新一 代HTTP客户端/" itemprop="url">
+                  OkHttp：Java 平台上的新一代 HTTP 客户端（笔记）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-16T09:50:31-07:00" content="2017-08-16">
+              2017-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2017/08/16/OkHttp：Java平台上的新一 代HTTP客户端/" class="leancloud_visitors" data-flag-title="OkHttp：Java 平台上的新一代 HTTP 客户端（笔记）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/java.jpg" alt="img"><br>&lt;</p>
+<h4 id="OkHttp-简介"><a href="#OkHttp-简介" class="headerlink" title="OkHttp 简介"></a>OkHttp 简介</h4><p>OkHttp 库的设计和实现的首要目标是高效。这也是选择 OkHttp 的重要理由之一。OkHttp 提供了对最新的 HTTP 协议版本 HTTP/2 和 SPDY 的支持，这使得对同一个主机发出的所有请求都可以共享相同的套接字连接。如果 HTTP/2 和 SPDY 不可用，OkHttp 会使用连接池来复用连接以提高效率。OkHttp 提供了对 GZIP 的默认支持来降低传输内容的大小。OkHttp 也提供了对 HTTP 响应的缓存机制，可以避免不必要的网络请求。当网络出现问题时，OkHttp 会自动重试一个主机的多个 IP 地址。<br>!– more –&gt;<br>在 Java 程序中使用 OkHttp 非常简单，只需要在 Maven 的 POM 文件中以下依赖即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp --&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;com.squareup.okhttp3&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;okhttp&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;3.8.1&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<h4 id="HTTP-头处理"><a href="#HTTP-头处理" class="headerlink" title="HTTP 头处理"></a>HTTP 头处理</h4><p>HTTP 头是 HTTP 请求和响应中的重要组成部分。在创建 HTTP 请求时需要设置一些 HTTP 头。在得到 HTTP 的响应之后，也会需要对其中包含的 HTTP 头进行解析。从代码的角度来说，HTTP 头的数据结构是 Map<string, list<string="">&gt;类型。也就是说，对于每个 HTTP 头，可能有多个值。但是大部分 HTTP 头都只有一个值，只有少部分 HTTP 头允许多个值。OkHttp 采用了简单的方式来区分这两种类型，使得对 HTTP 头的使用更加简单。</string,></p>
+<p>在设置 HTTP 头时，使用 header(name, value) 方法来设置 HTTP 头的唯一值。对同一个 HTTP 头，多次调用该方法会覆盖之前设置的值。使用 addHeader(name, value) 方法来为 HTTP 头添加新的值。在读取 HTTP 头时，使用 header(name) 方法来读取 HTTP 头的最近出现的值。如果该 HTTP 头只有单个值，则返回该值；如果有多个值，则返回最后一个值。使用 headers(name) 方法来读取 HTTP 头的所有值。</p>
+<p>以下代码中使用 header 方法设置了 User-Agent 头的值，并添加了一个 Accept 头的值。在进行解析时，通过 header 方法来获取 Server 头的单个值，通过 headers 方法来获取 Set-Cookie 头的所有值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class Headers &#123;</div><div class="line">   public static void main(String[] args) throws IOException &#123;</div><div class="line">    OkHttpClient client = new OkHttpClient();</div><div class="line"> </div><div class="line">    Request request = new Request.Builder()</div><div class="line">            .url(&quot;http://www.baidu.com&quot;)</div><div class="line">            .header(&quot;User-Agent&quot;, &quot;My super agent&quot;)</div><div class="line">            .addHeader(&quot;Accept&quot;, &quot;text/html&quot;)</div><div class="line">            .build();</div><div class="line"> </div><div class="line">    Response response = client.newCall(request).execute();</div><div class="line">    if (!response.isSuccessful()) &#123;</div><div class="line">        throw new IOException(&quot;服务器端错误: &quot; + response);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    System.out.println(response.header(&quot;Server&quot;));</div><div class="line">    System.out.println(response.headers(&quot;Set-Cookie&quot;));</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="POST-请求"><a href="#POST-请求" class="headerlink" title="POST 请求"></a>POST 请求</h4><p>HTTP POST 和 PUT 请求可以包含要提交的内容。只需要在创建 Request 对象时，通过 post 和 put 方法来指定要提交的内容即可。代码清单 4中通过 RequestBody 的 create 方法来创建媒体类型为 text/plain 的内容并提交。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public static String post(Headers headers, String url, String body) throws IOException &#123;</div><div class="line">        RequestBody requestBody = RequestBody.create(null, body);</div><div class="line">        Request request = new Request.Builder()</div><div class="line">                .url(url)</div><div class="line">                .headers(headers)</div><div class="line">                .post(requestBody)</div><div class="line">                .build();</div><div class="line">        Response response = client.newCall(request).execute();</div><div class="line">        return response.body().string();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>以 String 类型提交内容只适用于内容比较小的情况。当请求内容较大时，应该使用流来提交。以下中给了使用流方式来提交内容的示例。这里创建了 RequestBody 的一个匿名子类。该子类的 contentType 方法需要返回内容的媒体类型，而 writeTo 方法的参数是一个 BufferedSink 对象。我们需要做的就是把请求的内容写入到 BufferedSink 对象即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">public class PostStream &#123;</div><div class="line">   public static void main(String[] args) throws IOException &#123;</div><div class="line">    OkHttpClient client = new OkHttpClient();</div><div class="line">    final MediaType MEDIA_TYPE_TEXT = MediaType.parse(&quot;text/plain&quot;);</div><div class="line">    final String postBody = &quot;Hello World&quot;;</div><div class="line"> </div><div class="line">    RequestBody requestBody = new RequestBody() &#123;</div><div class="line">        @Override</div><div class="line">        public MediaType contentType() &#123;</div><div class="line">            return MEDIA_TYPE_TEXT;</div><div class="line">        &#125;</div><div class="line"> </div><div class="line">        @Override</div><div class="line">        public void writeTo(BufferedSink sink) throws IOException &#123;</div><div class="line">            sink.writeUtf8(postBody);</div><div class="line">        &#125;</div><div class="line"> </div><div class="line"> @Override</div><div class="line">        public long contentLength() throws IOException &#123;</div><div class="line">            return postBody.length();</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"> </div><div class="line">    Request request = new Request.Builder()</div><div class="line">            .url(&quot;http://www.baidu.com&quot;)</div><div class="line">            .post(requestBody)</div><div class="line">            .build();</div><div class="line"> </div><div class="line">    Response response = client.newCall(request).execute();</div><div class="line">    if (!response.isSuccessful()) &#123;</div><div class="line">        throw new IOException(&quot;服务器端错误: &quot; + response);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    System.out.println(response.body().string());</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果所要提交的内容来自本地文件，则不需要额外的流操作，只需要通过 RequestBody 的 create 方法，并把 File 类型的对象作为参数传入即可。</p>
+<p>如果需要模拟 HTML 中的表单提交，可以通过 FormEncodingBuilder 来创建请求内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">RequestBody formBody = new FormEncodingBuilder()</div><div class="line">            .add(&quot;query&quot;, &quot;Hello&quot;)</div><div class="line">            .build();</div></pre></td></tr></table></figure>
+<p>如果所要提交的内容来自本地文件，则不需要额外的流操作，只需要通过 RequestBody 的 create 方法，并把 File 类型的对象作为参数传入即可。</p>
+<p>如果需要模拟 HTML 中的表单提交，可以通过 FormEncodingBuilder 来创建请求内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">MediaType MEDIA_TYPE_TEXT = MediaType.parse(&quot;text/plain&quot;);</div><div class="line">RequestBody requestBody = new MultipartBuilder()</div><div class="line">    .type(MultipartBuilder.FORM)</div><div class="line">    .addPart(</div><div class="line">            Headers.of(&quot;Content-Disposition&quot;, &quot;form-data; name=\&quot;title\&quot;&quot;),</div><div class="line">            RequestBody.create(null, &quot;测试文档&quot;))</div><div class="line">    .addPart(</div><div class="line">            Headers.of(&quot;Content-Disposition&quot;, &quot;form-data; name=\&quot;file\&quot;&quot;),</div><div class="line">            RequestBody.create(MEDIA_TYPE_TEXT, new File(&quot;input.txt&quot;)))</div><div class="line">    .build();</div></pre></td></tr></table></figure>
+<h4 id="响应缓存"><a href="#响应缓存" class="headerlink" title="响应缓存"></a>响应缓存</h4><p>OkHttp 可以对 HTTP 响应的内容在磁盘上进行缓存。在进行 HTTP 请求时，如果该请求的响应已经被缓存而且没有过期，OkHttp 会直接使用缓存中的响应内容，而不需要真正的发出 HTTP 请求到远程服务器。在创建缓存时需要指定一个磁盘目录和缓存的大小。在代码清单 8 中，创建出 Cache 对象之后，通过 OkHttpClient 的 setCache 进行设置。通过 Response 对象的 cacheResponse 和 networkResponse 方法可以得到缓存的响应和从实际的 HTTP 请求得到的响应。如果该请求的响应来自实际的网络请求，则 cacheResponse 方法的返回值为 null；如果响应来自缓存，则 networkResponse 的返回值为 null。OkHttp 在进行缓存时会遵循 HTTP 协议的要求，因此可以通过标准的 HTTP 头 Cache-Control 来控制响应的缓存时间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public class CacheResponse &#123;</div><div class="line">   public static void main(String[] args) throws IOException &#123;</div><div class="line">    int cacheSize = 100 * 1024 * 1024;</div><div class="line">    File cacheDirectory = Files.createTempDirectory(&quot;cache&quot;).toFile();</div><div class="line">    Cache cache = new Cache(cacheDirectory, cacheSize);</div><div class="line">    OkHttpClient client = new OkHttpClient();</div><div class="line">    client.setCache(cache);</div><div class="line"> </div><div class="line">    Request request = new Request.Builder()</div><div class="line">            .url(&quot;http://www.baidu.com&quot;)</div><div class="line">            .build();</div><div class="line"> </div><div class="line">    Response response = client.newCall(request).execute();</div><div class="line">    if (!response.isSuccessful()) &#123;</div><div class="line">        throw new IOException(&quot;服务器端错误: &quot; + response);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    System.out.println(response.cacheResponse());</div><div class="line">    System.out.println(response.networkResponse());</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="用户认证"><a href="#用户认证" class="headerlink" title="用户认证"></a>用户认证</h4><p>OkHttp 提供了对用户认证的支持。当 HTTP 响应的状态代码是 401 时，OkHttp 会从设置的 Authenticator 对象中获取到新的 Request 对象并再次尝试发出请求。Authenticator 接口中的 authenticate 方法用来提供进行认证的 Request 对象，authenticateProxy 方法用来提供对代理服务器进行认证的 Request 对象。代码清单 9 中新的 Request 对象中添加了 HTTP 基本认证的 Authorization 头。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">OkHttpClient client = new OkHttpClient();</div><div class="line">client.setAuthenticator(new Authenticator() &#123;</div><div class="line">public Request authenticate(Proxy proxy, Response response) throws IOException &#123;</div><div class="line">    String credential = Credentials.basic(&quot;user&quot;, &quot;password&quot;);</div><div class="line">    return response.request().newBuilder()</div><div class="line">            .header(&quot;Authorization&quot;, credential)</div><div class="line">            .build();</div><div class="line">&#125;</div><div class="line"> </div><div class="line">public Request authenticateProxy(Proxy proxy, Response response)</div><div class="line">throws IOException &#123;</div><div class="line">    return null;</div><div class="line">&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="异步调用"><a href="#异步调用" class="headerlink" title="异步调用"></a>异步调用</h4><p>OkHttp 除了支持常用的同步 HTTP 请求之外，还支持异步 HTTP 请求调用。在使用同步调用时，当前线程会被阻塞，直到 HTTP 请求完成。当同时发出多个 HTTP 请求时，同步调用的性能会比较差。这个时候通过异步调用可以提高整体的性能。</p>
+<p>以下给出了异步调用的示例。在通过 newCall 方法创建一个新的 Call 对象之后，不是通过 execute 方法来同步执行，而是通过 enqueue 方法来添加到执行队列中。在调用 enqueue 方法时需要提供一个 Callback 接口的实现。在 Callback 接口实现中，通过 onResponse 和 onFailure 方法来处理响应和进行错误处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public class AsyncGet &#123;</div><div class="line">   public static void main(String[] args) throws IOException &#123;</div><div class="line">    OkHttpClient client = new OkHttpClient();</div><div class="line"> </div><div class="line">    Request request = new Request.Builder()</div><div class="line">            .url(&quot;http://www.baidu.com&quot;)</div><div class="line">            .build();</div><div class="line"> </div><div class="line">    client.newCall(request).enqueue(new Callback() &#123;</div><div class="line">        public void onFailure(Request request, IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line"> </div><div class="line">        public void onResponse(Response response) throws IOException &#123;</div><div class="line">            if (!response.isSuccessful()) &#123;</div><div class="line">                throw new IOException(&quot;服务器端错误: &quot; + response);</div><div class="line">            &#125;</div><div class="line"> </div><div class="line">            System.out.println(response.body().string());</div><div class="line">        &#125;</div><div class="line">&#125;);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h4><p>拦截器是 OkHttp 提供的对 HTTP 请求和响应进行统一处理的强大机制。拦截器在实现和使用上类似于 Servlet 规范中的过滤器。多个拦截器可以链接起来，形成一个链条。拦截器会按照在链条上的顺序依次执行。 拦截器在执行时，可以先对请求的 Request 对象进行修改；再得到响应的 Response 对象之后，可以进行修改之后再返回。</p>
+<p>以下中的拦截器 LoggingInterceptor 用来记录 HTTP 请求和响应的相关信息。Interceptor 接口只包含一个方法 intercept，其参数是 Chain 对象。Chain 对象表示的是当前的拦截器链条。通过 Chain 的 request 方法可以获取到当前的 Request 对象。在使用完 Request 对象之后，通过 Chain 对象的 proceed 方法来继续拦截器链条的执行。当执行完成之后，可以对得到的 Response 对象进行额外的处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public class LoggingInterceptor implements Interceptor &#123;</div><div class="line">public Response intercept(Chain chain) throws IOException &#123;</div><div class="line">    Request request = chain.request();</div><div class="line"> </div><div class="line">    long t1 = System.nanoTime();</div><div class="line">    System.out.println(String.format(&quot;发送请求: [%s] %s%n%s&quot;,</div><div class="line">            request.url(), chain.connection(), request.headers()));</div><div class="line"> </div><div class="line">    Response response = chain.proceed(request);</div><div class="line"> </div><div class="line">    long t2 = System.nanoTime();</div><div class="line">    System.out.println(String.format(&quot;接收响应: [%s] %.1fms%n%s&quot;,</div><div class="line">            response.request().url(), (t2 - t1) / 1e6d, response.headers()));</div><div class="line"> </div><div class="line">    return response;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>OkHttp 中的拦截器分成应用和网络拦截器两种。应用拦截器对于每个 HTTP 响应都只会调用一次，可以通过不调用 Chain.proceed 方法来终止请求，也可以通过多次调用 Chain.proceed 方法来进行重试。网络拦截器对于调用执行中的自动重定向和重试所产生的响应也会被调用，而如果响应来自缓存，则不会被调用。应用和网络拦截器的添加方式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">client.interceptors().add(new LoggingInterceptor()); //添加应用拦截器</div><div class="line"> </div><div class="line">client.networkInterceptors().add(new LoggingInterceptor()); //添加网络拦截器</div></pre></td></tr></table></figure>
+<p>来源：<a href="https://www.ibm.com/developerworks/cn/java/j-lo-okhttp/" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/java/j-lo-okhttp/</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2017/08/09/shiro实战-session失效返回自定义状态码/" itemprop="url">
                   shiro实战-session失效返回自定义状态码
                 </a>
@@ -345,130 +495,6 @@
           <p><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Apache.png" alt="img"><br>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2017/08/09/shiro实战-session失效返回自定义状态码/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2017/07/27/shiro实战-授权/" itemprop="url">
-                  shiro授权
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-27T11:00:18-07:00" content="2017-07-27">
-              2017-07-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/shiro/" itemprop="url" rel="index">
-                    <span itemprop="name">shiro</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2017/07/27/shiro实战-授权/" class="leancloud_visitors" data-flag-title="shiro授权">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Apache.png" alt="img"><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2017/07/27/shiro实战-授权/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -717,6 +743,130 @@
           <h4 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h4><p>Shiro还提供了通用的散列支持,通过调用SimpleHash时指定散列算法，其内部使用了Java的MessageDigest实现。<br><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Apache.png" alt="img"><br>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2017/07/27/shiro实战-认证/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2017/07/27/shiro实战-授权/" itemprop="url">
+                  shiro授权
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-27T11:00:18-07:00" content="2017-07-27">
+              2017-07-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/shiro/" itemprop="url" rel="index">
+                    <span itemprop="name">shiro</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2017/07/27/shiro实战-授权/" class="leancloud_visitors" data-flag-title="shiro授权">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Apache.png" alt="img"><br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2017/07/27/shiro实战-授权/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1367,130 +1517,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2017/01/19/深入理解Java的接口和抽象类/" itemprop="url">
-                  深入理解Java的接口和抽象类
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-19T00:07:04-08:00" content="2017-01-19">
-              2017-01-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2017/01/19/深入理解Java的接口和抽象类/" class="leancloud_visitors" data-flag-title="深入理解Java的接口和抽象类">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/java.jpg" alt="img"><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2017/01/19/深入理解Java的接口和抽象类/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1536,7 +1562,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1553,7 +1579,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
