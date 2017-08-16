@@ -68,7 +68,7 @@
 <link href="/blog/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Spring," />
 
 
 
@@ -86,15 +86,15 @@
 
 
 
-<meta name="description" content="放眼望去，那是一抹抹碧绿的倩影，当蝴蝶乱舞在其周围，当枝条上的露珠不忍离去，这或许，就是生命的盎然与生生不息。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tony's blog">
-<meta property="og:url" content="http://tonywu.me/blog/tags/跨域请求/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC全局异常捕获">
+<meta property="og:url" content="http://tonywu.me/blog/2018/08/16/SpringMVC全局异常捕获/index.html">
 <meta property="og:site_name" content="Tony's blog">
-<meta property="og:description" content="放眼望去，那是一抹抹碧绿的倩影，当蝴蝶乱舞在其周围，当枝条上的露珠不忍离去，这或许，就是生命的盎然与生生不息。">
+<meta property="og:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Spring.png">
+<meta property="og:updated_time" content="2017-08-16T08:56:34.851Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tony's blog">
-<meta name="twitter:description" content="放眼望去，那是一抹抹碧绿的倩影，当蝴蝶乱舞在其周围，当枝条上的露珠不忍离去，这或许，就是生命的盎然与生生不息。">
+<meta name="twitter:title" content="SpringMVC全局异常捕获">
+<meta name="twitter:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Spring.png">
 
 
 
@@ -115,10 +115,10 @@
 
 
 
-  <link rel="canonical" href="http://tonywu.me/blog/tags/跨域请求/"/>
+  <link rel="canonical" href="http://tonywu.me/blog/2018/08/16/SpringMVC全局异常捕获/"/>
 
 
-  <title> 标签: 跨域请求 | Tony's blog </title>
+  <title> SpringMVC全局异常捕获 | Tony's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -149,7 +149,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -247,46 +247,155 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        跨域请求
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SpringMVC全局异常捕获
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-08-16T22:52:32-07:00" content="2018-08-16">
+              2018-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2018/08/16/SpringMVC全局异常捕获/" class="leancloud_visitors" data-flag-title="SpringMVC全局异常捕获">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+      
+        <p><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Spring.png" alt="img"><br><a id="more"></a><br>只写用过的。</p>
+<h4 id="Spring全局异常，代码入侵方式"><a href="#Spring全局异常，代码入侵方式" class="headerlink" title="Spring全局异常，代码入侵方式"></a>Spring全局异常，代码入侵方式</h4><p>异常捕获<br>//注意使用注解@ControllerAdvice作用域是全局Controller范围<br>//可应用到所有@RequestMapping类或方法上的@ExceptionHandler、<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">@ControllerAdvice</div><div class="line">public class DefaultExceptionHandler &#123;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 无权限异常处理</div><div class="line">     * @param e</div><div class="line">     * @return</div><div class="line">     */</div><div class="line">    @ExceptionHandler(&#123;UnauthorizedException.class&#125;)</div><div class="line">    @ResponseStatus(HttpStatus.UNAUTHORIZED)</div><div class="line">    @ResponseBody</div><div class="line">    public Response processUnauthenticatedException(UnauthorizedException e) &#123;</div><div class="line"></div><div class="line">        return new Response(Response.Status.FAILURE);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="Sping全局异常，自定义异常类和异常解析"><a href="#Sping全局异常，自定义异常类和异常解析" class="headerlink" title="Sping全局异常，自定义异常类和异常解析"></a>Sping全局异常，自定义异常类和异常解析</h4><p>实现异常捕获接口HandlerExceptionResolver</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) &#123;</div><div class="line">        //....</div><div class="line">        return new ModelAndView(viewName, model);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>配置Spring支持异常捕获</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;bean id= &quot;defaultHandlerExceptionResolver&quot; class=&quot;cn.bg.controller.DefaultHandlerExceptionResolver&quot;/&gt;</div></pre></td></tr></table></figure>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/blog/2016/12/29/跨域请求之Java后台实现/" itemprop="url">
-              
-                <span itemprop="name">跨域请求之Java后台实现</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-12-29T09:50:31-08:00"
-              content="2016-12-29" >
-          12-29
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Spring/" rel="tag">#Spring</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/08/16/OkHttp：Java平台上的新一 代HTTP客户端/" rel="next" title="OkHttp：Java 平台上的新一代 HTTP 客户端（笔记）">
+                <i class="fa fa-chevron-left"></i> OkHttp：Java 平台上的新一代 HTTP 客户端（笔记）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -294,6 +403,13 @@
 
 
           
+  <div class="comments" id="comments">
+    
+	<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTc5MS82MzU3">
+	</div>
+    
+  </div>
+
 
         </div>
         
@@ -313,8 +429,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/blog/images/avatar.png"
@@ -423,6 +548,17 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring全局异常，代码入侵方式"><span class="nav-number">1.</span> <span class="nav-text">Spring全局异常，代码入侵方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sping全局异常，自定义异常类和异常解析"><span class="nav-number">2.</span> <span class="nav-text">Sping全局异常，自定义异常类和异常解析</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -518,6 +654,10 @@
   
 
   
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
