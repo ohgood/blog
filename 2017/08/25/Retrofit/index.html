@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://tonywu.me/blog/2017/08/25/Retrofit/index.html">
 <meta property="og:site_name" content="Tony's blog">
 <meta property="og:description" content="介绍Retrofit将HTTP API转换为Java接口。1234public interface GitHubService &amp;#123;  @GET(&amp;quot;users/&amp;#123;user&amp;#125;/repos&amp;quot;)  Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; listRepos(@Path(&amp;quot;user&amp;quot;) String user);&amp;#12">
-<meta property="og:updated_time" content="2017-08-25T09:24:45.128Z">
+<meta property="og:updated_time" content="2017-08-25T09:47:45.522Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Retrofit">
 <meta name="twitter:description" content="介绍Retrofit将HTTP API转换为Java接口。1234public interface GitHubService &amp;#123;  @GET(&amp;quot;users/&amp;#123;user&amp;#125;/repos&amp;quot;)  Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; listRepos(@Path(&amp;quot;user&amp;quot;) String user);&amp;#12">
@@ -338,6 +338,7 @@
 
       
         <h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>Retrofit将HTTP API转换为Java接口。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public interface GitHubService &#123;</div><div class="line">  @GET(&quot;users/&#123;user&#125;/repos&quot;)</div><div class="line">  Call&lt;List&lt;Repo&gt;&gt; listRepos(@Path(&quot;user&quot;) String user);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>Retrofit类生成了GitHubService接口的实现。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Retrofit retrofit = new Retrofit.Builder()</div><div class="line">    .baseUrl(&quot;https://api.github.com/&quot;)</div><div class="line">    .build();</div><div class="line"></div><div class="line">GitHubService service = retrofit.create(GitHubService.class);</div></pre></td></tr></table></figure></p>
 <p>创建的GitHubService的每个调用都可以向远程webserver发出同步或异步HTTP请求。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Call&lt;List&lt;Repo&gt;&gt; repos = service.listRepos(&quot;octocat&quot;);</div></pre></td></tr></table></figure></p>
 <p>使用注释来描述HTTP请求:<br>URL     支持URL参数替换和查询参数<br>Object  转换到请求体(例如:、JSON、协议缓冲区)<br>Multipart 请求正文和文件上传</p>

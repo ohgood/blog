@@ -466,47 +466,12 @@
 
       
         
-          
-            <h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>Retrofit将HTTP API转换为Java接口。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public interface GitHubService &#123;</div><div class="line">  @GET(&quot;users/&#123;user&#125;/repos&quot;)</div><div class="line">  Call&lt;List&lt;Repo&gt;&gt; listRepos(@Path(&quot;user&quot;) String user);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Retrofit类生成了GitHubService接口的实现。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Retrofit retrofit = new Retrofit.Builder()</div><div class="line">    .baseUrl(&quot;https://api.github.com/&quot;)</div><div class="line">    .build();</div><div class="line"></div><div class="line">GitHubService service = retrofit.create(GitHubService.class);</div></pre></td></tr></table></figure></p>
-<p>创建的GitHubService的每个调用都可以向远程webserver发出同步或异步HTTP请求。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Call&lt;List&lt;Repo&gt;&gt; repos = service.listRepos(&quot;octocat&quot;);</div></pre></td></tr></table></figure></p>
-<p>使用注释来描述HTTP请求:<br>URL     支持URL参数替换和查询参数<br>Object  转换到请求体(例如:、JSON、协议缓冲区)<br>Multipart 请求正文和文件上传</p>
-<h5 id="api声明"><a href="#api声明" class="headerlink" title="api声明"></a>api声明</h5><p>接口方法及其参数的注释说明了如何处理请求。</p>
-<h5 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h5><p>每个方法都必须有一个HTTP注释，它提供了请求方法和相对URL。有五个内置的注释:GET、POST、PUT、DELETE和HEAD。资源的相对URL在注释中指定。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@GET(&quot;users/list&quot;)</div></pre></td></tr></table></figure></p>
-<p>你还可以在URL中指定查询参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@GET(&quot;users/list?sort=desc&quot;)</div></pre></td></tr></table></figure></p>
-<h5 id="URL操作"><a href="#URL操作" class="headerlink" title="URL操作"></a>URL操作</h5><p>使用替换块和方法上的参数可以动态更新请求URL。替换块是由{and}包围的字母数字字符串。使用相同的字符串，必须用@ path注释相应的参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@GET(&quot;group/&#123;id&#125;/users&quot;)</div><div class="line">Call&lt;List&lt;User&gt;&gt; groupList(@Path(&quot;id&quot;) int groupId);</div></pre></td></tr></table></figure></p>
-<p>对于复杂的查询参数组合，可以使用映射。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@GET(&quot;group/&#123;id&#125;/users&quot;)</div><div class="line">Call&lt;List&lt;User&gt;&gt; groupList(@Path(&quot;id&quot;) int groupId, @QueryMap Map&lt;String, String&gt; options);</div></pre></td></tr></table></figure></p>
-<h5 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h5><p>可以将对象指定为使用@ body注释的HTTP请求体。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@POST(&quot;users/new&quot;)</div><div class="line">Call&lt;User&gt; createUser(@Body User user);</div></pre></td></tr></table></figure></p>
-<p>该对象还将使用在改进实例上指定的转换器进行转换。如果没有添加转换器，则只能使用RequestBody。</p>
-<h5 id="form表单和Multipart"><a href="#form表单和Multipart" class="headerlink" title="form表单和Multipart"></a>form表单和Multipart</h5><p>方法还可以声明发送表单和Multipart数据。<br>当方法上有@FormUrlEncoded注解时，form表单数据会被发送。每个键值对都带有@ field，其中包含名称和提供值的对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@Multipart</div><div class="line">@PUT(&quot;user/photo&quot;)</div><div class="line">Call&lt;User&gt; updateUser(@Part(&quot;photo&quot;) RequestBody photo, @Part(&quot;description&quot;) RequestBody description);</div></pre></td></tr></table></figure></p>
-<p>Multpart使用了一个Retrofit的改进器或者他们可以实现请求体来处理他们自己的序列化。</p>
-<h5 id="头操作"><a href="#头操作" class="headerlink" title="头操作"></a>头操作</h5><p>你可以使用@ headers注释设置一个方法的静态头信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@Headers(&quot;Cache-Control: max-age=640000&quot;)</div><div class="line">@GET(&quot;widget/list&quot;)</div><div class="line">Call&lt;List&lt;Widget&gt;&gt; widgetList();</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@Headers(&#123;</div><div class="line">    &quot;Accept: application/vnd.github.v3.full+json&quot;,</div><div class="line">    &quot;User-Agent: Retrofit-Sample-App&quot;</div><div class="line">&#125;)</div><div class="line">@GET(&quot;users/&#123;username&#125;&quot;)</div><div class="line">Call&lt;User&gt; getUser(@Path(&quot;username&quot;) String username);</div></pre></td></tr></table></figure>
-<p>注意，header并不覆盖彼此。所有具有相同名称的标题将包含在请求中。</p>
-<p>可以使用@ Header注释动态更新请求报头。必须向@ header提供相应的参数。如果该值为空，则将省略头。否则，将调用toString值，并使用结果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@GET(&quot;user&quot;)</div><div class="line">Call&lt;User&gt; getUser(@Header(&quot;Authorization&quot;) String authorization)</div></pre></td></tr></table></figure></p>
-<p>需要添加到每个请求的头可以使用OkHttp拦截器指定。</p>
-<h5 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h5><p>调用实例可以同步或异步执行。每个实例只能使用一次，但是调用clone()将创建一个可以使用的新实例。<br>在Android上，回调将在主线程上执行。在JVM上，回调将发生在执行HTTP请求的同一线程上。</p>
-<h4 id="Retrofit-配置"><a href="#Retrofit-配置" class="headerlink" title="Retrofit 配置"></a>Retrofit 配置</h4><p>Retrofit是通过将API接口转化为可调用对象的类。默认情况下，Retrofit将使您的平台有正常的默认值，但它允许定制。</p>
-<h5 id="转换器"><a href="#转换器" class="headerlink" title="转换器"></a>转换器</h5><p>默认情况下，Retrofit只能将HTTP主体反序列化为OkHttp的ResponseBody类型，它只能接受@ body的ResponseBody类型。</p>
-<p>可以添加转换器以支持其他类型。六个兄弟模块为您的方便调整流行的序列化库。</p>
-<ul>
-<li>Gson: com.squareup.retrofit2:converter-gson</li>
-<li>Jackson: com.squareup.retrofit2:converter-jackson</li>
-<li>Moshi: com.squareup.retrofit2:converter-moshi</li>
-<li>Protobuf: com.squareup.retrofit2:converter-protobuf</li>
-<li>Wire: com.squareup.retrofit2:converter-wire</li>
-<li>Simple XML: com.squareup.retrofit2:converter-simplexml</li>
-<li>Scalars (primitives, boxed, and String): com.squareup.retrofit2:converter-scalars<br>这里有一个使用GsonConverterFactory类来生成GitHubService接口的实现的示例，该接口使用Gson来进行反序列化。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Retrofit retrofit = new Retrofit.Builder()</div><div class="line">    .baseUrl(&quot;https://api.github.com&quot;)</div><div class="line">    .addConverterFactory(GsonConverterFactory.create())</div><div class="line">    .build();</div><div class="line"></div><div class="line">GitHubService service = retrofit.create(GitHubService.class);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="自定义转换器"><a href="#自定义转换器" class="headerlink" title="自定义转换器"></a>自定义转换器</h5><p>如果您需要使用一种使用内容格式的API来进行通信，而这种内容格式不支持该框(例如YAML、txt、定制格式)，或者您希望使用不同的库来实现现有的格式，您可以很容易地创建您自己的转换器。创建一个扩展转换器的类。工厂类，并在构建适配器时传递实例。</p>
-<p>下载地址 <a href="https://search.maven.org/remote_content?g=com.squareup.retrofit2&amp;a=retrofit&amp;v=LATEST" target="_blank" rel="external">https://search.maven.org/remote_content?g=com.squareup.retrofit2&amp;a=retrofit&amp;v=LATEST</a></p>
-<p>maven<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">  &lt;groupId&gt;com.squareup.retrofit2&lt;/groupId&gt;</div><div class="line">  &lt;artifactId&gt;retrofit&lt;/artifactId&gt;</div><div class="line">  &lt;version&gt;(insert latest version)&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure></p>
-<p>GRADLE<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.squareup.retrofit2:retrofit:(insert latest version)&apos;</div></pre></td></tr></table></figure></p>
-<p>Retrofit 版本要求： Java 7 or Android 2.3.</p>
-<p>原文地址：<a href="https://square.github.io/retrofit/" target="_blank" rel="external">https://square.github.io/retrofit/</a> 本文为翻译文</p>
-
-          
+          <h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>Retrofit将HTTP API转换为Java接口。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public interface GitHubService &#123;</div><div class="line">  @GET(&quot;users/&#123;user&#125;/repos&quot;)</div><div class="line">  Call&lt;List&lt;Repo&gt;&gt; listRepos(@Path(&quot;user&quot;) String user);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2017/08/25/Retrofit/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
