@@ -499,11 +499,12 @@
 <li>Scalars (primitives, boxed, and String): com.squareup.retrofit2:converter-scalars<br>这里有一个使用GsonConverterFactory类来生成GitHubService接口的实现的示例，该接口使用Gson来进行反序列化。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Retrofit retrofit = new Retrofit.Builder()</div><div class="line">    .baseUrl(&quot;https://api.github.com&quot;)</div><div class="line">    .addConverterFactory(GsonConverterFactory.create())</div><div class="line">    .build();</div><div class="line"></div><div class="line">GitHubService service = retrofit.create(GitHubService.class);</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h5 id="CUSTOM-CONVERTERS"><a href="#CUSTOM-CONVERTERS" class="headerlink" title="CUSTOM CONVERTERS"></a>CUSTOM CONVERTERS</h5><p>如果您需要使用一种使用内容格式的API来进行通信，而这种内容格式不支持该框(例如YAML、txt、定制格式)，或者您希望使用不同的库来实现现有的格式，您可以很容易地创建您自己的转换器。创建一个扩展转换器的类。工厂类，并在构建适配器时传递实例。</p>
+<h5 id="自定义转换器"><a href="#自定义转换器" class="headerlink" title="自定义转换器"></a>自定义转换器</h5><p>如果您需要使用一种使用内容格式的API来进行通信，而这种内容格式不支持该框(例如YAML、txt、定制格式)，或者您希望使用不同的库来实现现有的格式，您可以很容易地创建您自己的转换器。创建一个扩展转换器的类。工厂类，并在构建适配器时传递实例。</p>
 <p>下载地址 <a href="https://search.maven.org/remote_content?g=com.squareup.retrofit2&amp;a=retrofit&amp;v=LATEST" target="_blank" rel="external">https://search.maven.org/remote_content?g=com.squareup.retrofit2&amp;a=retrofit&amp;v=LATEST</a></p>
 <p>maven<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">  &lt;groupId&gt;com.squareup.retrofit2&lt;/groupId&gt;</div><div class="line">  &lt;artifactId&gt;retrofit&lt;/artifactId&gt;</div><div class="line">  &lt;version&gt;(insert latest version)&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure></p>
 <p>GRADLE<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.squareup.retrofit2:retrofit:(insert latest version)&apos;</div></pre></td></tr></table></figure></p>
 <p>Retrofit 版本要求： Java 7 or Android 2.3.</p>
+<p>原文地址：<a href="https://square.github.io/retrofit/" target="_blank" rel="external">https://square.github.io/retrofit/</a> 本文为翻译文</p>
 
           
         
