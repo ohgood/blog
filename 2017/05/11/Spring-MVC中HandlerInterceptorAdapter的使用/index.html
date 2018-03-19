@@ -91,7 +91,7 @@
 <meta property="og:url" content="http://coding.ink/blog/2017/05/11/Spring-MVC中HandlerInterceptorAdapter的使用/index.html">
 <meta property="og:site_name" content="Tony's blog">
 <meta property="og:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Spring.png">
-<meta property="og:updated_time" content="2018-03-19T02:05:21.649Z">
+<meta property="og:updated_time" content="2018-03-19T02:08:10.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring MVC中HandlerInterceptorAdapter的使用">
 <meta name="twitter:image" content="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Spring.png">
@@ -337,90 +337,10 @@
 
       
         <p><img src="http://7xpm82.com1.z0.glb.clouddn.com/img/%E6%91%98%E8%A6%81%E5%9B%BE%E7%89%87/Spring.png" alt="img"><br><a id="more"></a><br>一般情况下，对来自浏览器的请求的拦截，是利用Filter实现的，这种方式可以实现Bean预处理、后处理。<br>Spring MVC的拦截器不仅可实现Filter的所有功能，还可以更精确的控制拦截精度。<br>spring为我们提供了org.springframework.web.servlet.handler.HandlerInterceptorAdapter这个适配器，继承此类，可以非常方便的实现自己的拦截器。他有三个方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">   /**</div><div class="line">    * 该方法会在Controller的方法执行前会被调用，可以使用这个方法来中断或者继续执行链的处理，</div><div class="line">    * 当返回true时，处理执行链会继续，当返回false时，则不会去执行Controller的方法。</div><div class="line">    */</div><div class="line">@Override</div><div class="line">public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)</div><div class="line">	throws Exception &#123;</div><div class="line">	return true;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line">    * ModelAndView 传进来，那么我们就可以在render view之前往view中添加额外的model对象，或者对view的去处进行修改</div><div class="line">    */</div><div class="line">@Override</div><div class="line">public void postHandle(</div><div class="line">		HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</div><div class="line">		throws Exception &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line">    * 该方法会在render view完成后执行，也可以说在请求过程（request processing）完成之后执行。</div><div class="line">    * 该方法可以用来清理资源（例如象blackboard building block release context)</div><div class="line">    */</div><div class="line">@Override</div><div class="line">public void afterCompletion(</div><div class="line">		HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</div><div class="line">		throws Exception &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * This implementation is empty.</div><div class="line"> */</div><div class="line">@Override</div><div class="line">public void afterConcurrentHandlingStarted(</div><div class="line">		HttpServletRequest request, HttpServletResponse response, Object handler)</div><div class="line">		throws Exception &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">public class InitializingInterceptor extends HandlerInterceptorAdapter &#123;</div><div class="line"></div><div class="line">    @Inject</div><div class="line">    private LoginService loginService;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 登录状态，不能访问如下链接</div><div class="line">     */</div><div class="line">    private static final List&lt;String&gt; UNLOGIN_URI = Arrays.asList(&quot;/login&quot;, &quot;/register&quot;);</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 请求拦截器</div><div class="line">     *</div><div class="line">     * @param request</div><div class="line">     * @param response</div><div class="line">     * @param handler</div><div class="line">     * @return</div><div class="line">     * @throws Exception</div><div class="line">     */</div><div class="line">    @Override</div><div class="line">    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;</div><div class="line">        String path = request.getServletPath();</div><div class="line"></div><div class="line">        HttpSession session = request.getSession();</div><div class="line"></div><div class="line">        if (path.startsWith(&quot;/api&quot;)) &#123;</div><div class="line">            return true;</div><div class="line">	&#125;</div><div class="line">        if (path.startsWith(&quot;/logout&quot;)) &#123;</div><div class="line">            return true;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">        for (String uri : UNLOGIN_URI) &#123;</div><div class="line">            if (path.startsWith(uri)) &#123;</div><div class="line">                if (loginService.isLogin(session)) &#123;</div><div class="line">                    response.sendRedirect(&quot;/tkld&quot;);</div><div class="line">                    return false;</div><div class="line">                &#125; else &#123;</div><div class="line">                    return true;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">```一般情况下，对来自浏览器的请求的拦截，是利用Filter实现的，这种方式可以实现Bean预处理、后处理。 </div><div class="line">Spring MVC的拦截器不仅可实现Filter的所有功能，还可以更精确的控制拦截精度。 </div><div class="line">spring为我们提供了org.springframework.web.servlet.handler.HandlerInterceptorAdapter这个适配器，继承此类，可以非常方便的实现自己的拦截器。他有三个方法：</div></pre></td></tr></table></figure>
-<pre><code>/**
- * 该方法会在Controller的方法执行前会被调用，可以使用这个方法来中断或者继续执行链的处理，
- * 当返回true时，处理执行链会继续，当返回false时，则不会去执行Controller的方法。
- */
-@Override
-public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-    throws Exception {
-    return true;
-}
-
-/**
- * ModelAndView 传进来，那么我们就可以在render view之前往view中添加额外的model对象，或者对view的去处进行修改
- */
-@Override
-public void postHandle(
-        HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
-        throws Exception {
-}
-
-/**
- * 该方法会在render view完成后执行，也可以说在请求过程（request processing）完成之后执行。
- * 该方法可以用来清理资源（例如象blackboard building block release context)
- */
-@Override
-public void afterCompletion(
-        HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-        throws Exception {
-}
-
-/**
- * This implementation is empty.
- */
-@Override
-public void afterConcurrentHandlingStarted(
-        HttpServletRequest request, HttpServletResponse response, Object handler)
-        throws Exception {
-}
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 例子</div></pre></td></tr></table></figure>
-<p>public class InitializingInterceptor extends HandlerInterceptorAdapter {</p>
-<pre><code>@Inject
-private LoginService loginService;
-
-/**
- * 登录状态，不能访问如下链接
- */
-private static final List&lt;String&gt; UNLOGIN_URI = Arrays.asList(&quot;/login&quot;, &quot;/register&quot;);
-
-/**
- * 请求拦截器
- *
- * @param request
- * @param response
- * @param handler
- * @return
- * @throws Exception
- */
-@Override
-public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-    String path = request.getServletPath();
-
-    HttpSession session = request.getSession();
-
-    if (path.startsWith(&quot;/api&quot;)) {
-        return true;
-}
-    if (path.startsWith(&quot;/logout&quot;)) {
-        return true;
-}
-
-    for (String uri : UNLOGIN_URI) {
-        if (path.startsWith(uri)) {
-            if (loginService.isLogin(session)) {
-                response.sendRedirect(&quot;/tkld&quot;);
-                return false;
-            } else {
-                return true;
-            }
-        }
-    }
-
-    return true;
-}
-</code></pre><p>}<br>```</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">public class InitializingInterceptor extends HandlerInterceptorAdapter &#123;</div><div class="line"></div><div class="line">    @Inject</div><div class="line">    private LoginService loginService;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 登录状态，不能访问如下链接</div><div class="line">     */</div><div class="line">    private static final List&lt;String&gt; UNLOGIN_URI = Arrays.asList(&quot;/login&quot;, &quot;/register&quot;);</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 请求拦截器</div><div class="line">     *</div><div class="line">     * @param request</div><div class="line">     * @param response</div><div class="line">     * @param handler</div><div class="line">     * @return</div><div class="line">     * @throws Exception</div><div class="line">     */</div><div class="line">    @Override</div><div class="line">    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;</div><div class="line">        String path = request.getServletPath();</div><div class="line"></div><div class="line">        HttpSession session = request.getSession();</div><div class="line"></div><div class="line">        if (path.startsWith(&quot;/api&quot;)) &#123;</div><div class="line">            return true;</div><div class="line">	&#125;</div><div class="line">        if (path.startsWith(&quot;/logout&quot;)) &#123;</div><div class="line">            return true;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">        for (String uri : UNLOGIN_URI) &#123;</div><div class="line">            if (path.startsWith(uri)) &#123;</div><div class="line">                if (loginService.isLogin(session)) &#123;</div><div class="line">                    response.sendRedirect(&quot;/tkld&quot;);</div><div class="line">                    return false;</div><div class="line">                &#125; else &#123;</div><div class="line">                    return true;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一般情况下，对来自浏览器的请求的拦截，是利用Filter实现的，这种方式可以实现Bean预处理、后处理。<br>Spring MVC的拦截器不仅可实现Filter的所有功能，还可以更精确的控制拦截精度。<br>spring为我们提供了org.springframework.web.servlet.handler.HandlerInterceptorAdapter这个适配器，继承此类，可以非常方便的实现自己的拦截器。他有三个方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">   /**</div><div class="line">    * 该方法会在Controller的方法执行前会被调用，可以使用这个方法来中断或者继续执行链的处理，</div><div class="line">    * 当返回true时，处理执行链会继续，当返回false时，则不会去执行Controller的方法。</div><div class="line">    */</div><div class="line">@Override</div><div class="line">public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)</div><div class="line">	throws Exception &#123;</div><div class="line">	return true;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line">    * ModelAndView 传进来，那么我们就可以在render view之前往view中添加额外的model对象，或者对view的去处进行修改</div><div class="line">    */</div><div class="line">@Override</div><div class="line">public void postHandle(</div><div class="line">		HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</div><div class="line">		throws Exception &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line">    * 该方法会在render view完成后执行，也可以说在请求过程（request processing）完成之后执行。</div><div class="line">    * 该方法可以用来清理资源（例如象blackboard building block release context)</div><div class="line">    */</div><div class="line">@Override</div><div class="line">public void afterCompletion(</div><div class="line">		HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</div><div class="line">		throws Exception &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * This implementation is empty.</div><div class="line"> */</div><div class="line">@Override</div><div class="line">public void afterConcurrentHandlingStarted(</div><div class="line">		HttpServletRequest request, HttpServletResponse response, Object handler)</div><div class="line">		throws Exception &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">public class InitializingInterceptor extends HandlerInterceptorAdapter &#123;</div><div class="line"></div><div class="line">    @Inject</div><div class="line">    private LoginService loginService;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 登录状态，不能访问如下链接</div><div class="line">     */</div><div class="line">    private static final List&lt;String&gt; UNLOGIN_URI = Arrays.asList(&quot;/login&quot;, &quot;/register&quot;);</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 请求拦截器</div><div class="line">     *</div><div class="line">     * @param request</div><div class="line">     * @param response</div><div class="line">     * @param handler</div><div class="line">     * @return</div><div class="line">     * @throws Exception</div><div class="line">     */</div><div class="line">    @Override</div><div class="line">    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;</div><div class="line">        String path = request.getServletPath();</div><div class="line"></div><div class="line">        HttpSession session = request.getSession();</div><div class="line"></div><div class="line">        if (path.startsWith(&quot;/api&quot;)) &#123;</div><div class="line">            return true;</div><div class="line">	&#125;</div><div class="line">        if (path.startsWith(&quot;/logout&quot;)) &#123;</div><div class="line">            return true;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">        for (String uri : UNLOGIN_URI) &#123;</div><div class="line">            if (path.startsWith(uri)) &#123;</div><div class="line">                if (loginService.isLogin(session)) &#123;</div><div class="line">                    response.sendRedirect(&quot;/tkld&quot;);</div><div class="line">                    return false;</div><div class="line">                &#125; else &#123;</div><div class="line">                    return true;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -637,7 +557,7 @@ public boolean preHandle(HttpServletRequest request, HttpServletResponse respons
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">1.</span> <span class="nav-text">例子</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">1.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子-1"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li></ol></div>
             
           </div>
         </section>
